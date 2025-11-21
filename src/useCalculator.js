@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { evaluate } from "mathjs";
+import { atanhDependencies, evaluate } from "mathjs";
 
 export function useCalculator() {
   const [userInput, setUserInput] = useState("");
@@ -28,8 +28,8 @@ export function useCalculator() {
   }, []);
 
   const pushToUserInput = useCallback((additionalSymbols) => {
-    const mathematicalOperators = ["+", "-", "/", "%", "*", ".", "00"];
-    const operatorsException = ["+", "/", "%", "*", ".", "00"];
+    const mathematicalOperators = ["+", "-", "/", "%", "*", ".", "0", "0."];
+    const operatorsException = ["+", "/", "%", "*"];
     console.log(additionalSymbols);
     setUserInput((prevState) => {
       const lastChar = prevState[prevState.length - 1];
@@ -45,6 +45,22 @@ export function useCalculator() {
         operatorsException.includes(additionalSymbols)
       ) {
         return prevState;
+      }
+
+      if (
+        prevState.includes(".") &&
+        additionalSymbols === "." &&
+        !prevState.includes(mathematicalOperators)
+      ) {
+        return prevState;
+      }
+
+      if (prevState.length === 0 && additionalSymbols === ".") {
+        return "0.";
+      }
+
+      if (prevState.length === 0 && additionalSymbols === "00") {
+        return "0";
       }
 
       return prevState.concat(additionalSymbols);
