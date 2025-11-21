@@ -4,6 +4,12 @@ import { evaluate } from "mathjs";
 export function useCalculator() {
   const [userInput, setUserInput] = useState("");
 
+  // try {
+  //   console.log(evaluate(userInput));
+  // } catch (error) {}
+
+  console.log(userInput);
+
   const equal = useCallback(() => {
     setUserInput((prevState) => {
       return prevState;
@@ -21,30 +27,35 @@ export function useCalculator() {
     setUserInput("");
   }, []);
 
-  const setSymbol = useCallback((symbol) => {
-    console.log(symbol);
+  const pushToUserInput = useCallback((additionalSymbols) => {
+    const mathematicalOperators = ["+", "-", "/", "%", "*", ".", "00"];
+    const operatorsException = ["+", "/", "%", "*", ".", "00"];
+    console.log(additionalSymbols);
     setUserInput((prevState) => {
-      return prevState.concat(symbol);
-    });
-  }, []);
+      const lastChar = prevState[prevState.length - 1];
+      const isLastOp = mathematicalOperators.includes(lastChar);
+      const isNewOp = mathematicalOperators.includes(additionalSymbols);
 
-  const setZeroes = useCallback(() => {
-    setUserInput((prevState) => {
-      return prevState.concat("00");
-    });
-  }, []);
+      if (isLastOp && isNewOp) {
+        return prevState;
+      }
 
-  const evaluateInput = useCallback((userInput) => {
-    return evaluate(userInput);
+      if (
+        prevState.length === 0 &&
+        operatorsException.includes(additionalSymbols)
+      ) {
+        return prevState;
+      }
+
+      return prevState.concat(additionalSymbols);
+    });
   }, []);
 
   return {
     equal,
     deleteLastSymbol,
     resetUserInput,
-    setSymbol,
-    setZeroes,
-    evaluateInput,
+    pushToUserInput,
     userInput,
   };
 }
