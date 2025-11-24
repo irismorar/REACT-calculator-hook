@@ -16,33 +16,37 @@ export default function App() {
 
       <section>
         <div className="display-container">
-          <div className="display">{userInput}</div>
+          <div className="display">
+            {userInput}
+            <span className="cursor"></span>
+          </div>
           <div className="result">{userInput}</div>
         </div>
         <div className="buttons-container">
-          <button className="math-operator-button" onClick={resetUserInput}>
+          <button data-variant="operation" onClick={resetUserInput}>
             AC
           </button>
           <button
-            className="math-operator-button"
+            data-variant="operation"
             onClick={() => {
               pushToUserInput("%");
             }}
           >
             %
           </button>
-          <button className="math-operator-button" onClick={deleteLastSymbol}>
-            &lt;-
+          <button data-variant="operation" onClick={deleteLastSymbol}>
+            ⌫
           </button>
           <button
-            className="math-operator-button"
+            data-variant="operation"
             onClick={() => {
               pushToUserInput("/");
             }}
           >
-            /
+            ÷
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("7");
             }}
@@ -50,6 +54,7 @@ export default function App() {
             7
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("8");
             }}
@@ -57,6 +62,7 @@ export default function App() {
             8
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("9");
             }}
@@ -64,14 +70,15 @@ export default function App() {
             9
           </button>
           <button
-            className="math-operator-button"
+            data-variant="operation"
             onClick={() => {
               pushToUserInput("*");
             }}
           >
-            *
+            ×
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("4");
             }}
@@ -79,6 +86,7 @@ export default function App() {
             4
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("5");
             }}
@@ -86,6 +94,7 @@ export default function App() {
             5
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("6");
             }}
@@ -93,14 +102,15 @@ export default function App() {
             6
           </button>
           <button
-            className="math-operator-button"
+            data-variant="operation"
             onClick={() => {
               pushToUserInput("-");
             }}
           >
-            -
+            −
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("1");
             }}
@@ -108,6 +118,7 @@ export default function App() {
             1
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("2");
             }}
@@ -115,6 +126,7 @@ export default function App() {
             2
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("3");
             }}
@@ -122,7 +134,7 @@ export default function App() {
             3
           </button>
           <button
-            className="math-operator-button"
+            data-variant="operation"
             onClick={() => {
               pushToUserInput("+");
             }}
@@ -130,6 +142,7 @@ export default function App() {
             +
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("00");
             }}
@@ -137,6 +150,7 @@ export default function App() {
             00
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput("0");
             }}
@@ -144,13 +158,14 @@ export default function App() {
             0
           </button>
           <button
+            data-variant="digit"
             onClick={() => {
               pushToUserInput(".");
             }}
           >
             .
           </button>
-          <button className="math-operator-button" onClick={equal}>
+          <button data-variant="destructive" onClick={equal}>
             =
           </button>
         </div>

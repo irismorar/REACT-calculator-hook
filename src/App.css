@@ -24,24 +24,51 @@ h1 {
 }
 
 main > section {
-  width: 33.4rem;
+  width: 27rem;
   border: 1px solid hsla(0, 0%, 100%, .1);
   border-radius: 20px;
   box-shadow: 0px 0px 20px hsla(0, 0%, 100%, .1);
   background-color: hsla(0, 100%, 0%, .01);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .display-container {
+  border: 1px solid red;
+  width: inherit;
   height: 11rem;
   padding: 0 1rem;
+  text-align: right;
+  padding: 2rem 1rem;
 }
 
 .display {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   height: 6rem;
   font-size: 3.8rem;
-  font-weight: 700;
-  text-align: right;
   letter-spacing: .3rem;
+}
+
+.cursor {
+  width: .1rem;
+  height: 80%;
+  background-color: #888;
+  animation: blink 0.75s infinite;
+}
+
+@keyframes blink {
+  0%, 
+  50%{ 
+    opacity: 1;
+  }
+  51%, 
+  100%{
+    opacity:0
+  }
 }
 
 .result {
@@ -52,30 +79,41 @@ main > section {
 }
 
 .buttons-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   padding: 2rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   gap: 1rem;
 }
 
 .buttons-container button {
-  font-size: 2.8rem;
-  font-weight: 600;
-  width: 7rem;
-  height: 7rem;
+  font-size: 2.5rem;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   border: none;
+  font-family: inherit;
+  color: hsla(0, 0%, 100%, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.math-operator-button {
-  background-color: hsla(0, 0%, 100%, .04);
+.buttons-container button:hover {
+  color: hsla(0, 0%, 100%, 1)
 }
 
-.buttons-container button:not(.math-operator-button) {
-background-color: hsla(0, 0%, 100%, .08);
+.buttons-container button:active {
+  transform: scale(0.95);
+}
+
+button[data-variant="operation"] {
+  background-color: hsla(0, 0%, 100%, .1);
+}
+
+button[data-variant="digit"] {
+  background-color: hsla(0, 0%, 100%, .3);
+}
+
+button[data-variant="destructive"] {
+  background-color: hsla(30, 80%, 40%, 1);
 }

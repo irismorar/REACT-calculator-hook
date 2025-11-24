@@ -27,45 +27,49 @@ export function useCalculator() {
     setUserInput("");
   }, []);
 
-  const pushToUserInput = useCallback((additionalSymbols) => {
-    const mathematicalOperators = ["+", "-", "/", "%", "*", ".", "0", "0."];
-    const operatorsException = ["+", "/", "%", "*"];
-    console.log(additionalSymbols);
-    setUserInput((prevState) => {
-      const lastChar = prevState[prevState.length - 1];
-      const isLastOp = mathematicalOperators.includes(lastChar);
-      const isNewOp = mathematicalOperators.includes(additionalSymbols);
-
-      if (isLastOp && isNewOp) {
-        return prevState;
-      }
-
-      if (
-        prevState.length === 0 &&
-        operatorsException.includes(additionalSymbols)
-      ) {
-        return prevState;
-      }
-
-      if (
-        prevState.includes(".") &&
-        additionalSymbols === "." &&
-        !prevState.includes(mathematicalOperators)
-      ) {
-        return prevState;
-      }
-
-      if (prevState.length === 0 && additionalSymbols === ".") {
-        return "0.";
-      }
-
-      if (prevState.length === 0 && additionalSymbols === "00") {
-        return "0";
-      }
-
-      return prevState.concat(additionalSymbols);
-    });
+  const pushToUserInput = useCallback((additionalSymbol) => {
+    console.log(additionalSymbol);
   }, []);
+
+  // const pushToUserInput = useCallback((additionalSymbols) => {
+  //   const mathematicalOperators = ["+", "-", "/", "%", "*", ".", "0", "0."];
+  //   const operatorsException = ["+", "/", "%", "*"];
+  //   console.log(additionalSymbols);
+  //   setUserInput((prevState) => {
+  //     const lastChar = prevState[prevState.length - 1];
+  //     const isLastOp = mathematicalOperators.includes(lastChar);
+  //     const isNewOp = mathematicalOperators.includes(additionalSymbols);
+
+  //     if (isLastOp && isNewOp) {
+  //       return prevState;
+  //     }
+
+  //     if (
+  //       prevState.length === 0 &&
+  //       operatorsException.includes(additionalSymbols)
+  //     ) {
+  //       return prevState;
+  //     }
+
+  //     if (
+  //       prevState.includes(".") &&
+  //       additionalSymbols === "." &&
+  //       !prevState.includes(mathematicalOperators)
+  //     ) {
+  //       return prevState;
+  //     }
+
+  //     if (prevState.length === 0 && additionalSymbols === ".") {
+  //       return "0.";
+  //     }
+
+  //     if (prevState.length === 0 && additionalSymbols === "00") {
+  //       return "0";
+  //     }
+
+  //     return prevState.concat(additionalSymbols);
+  //   });
+  // }, []);
 
   return {
     equal,
