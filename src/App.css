@@ -36,7 +36,6 @@ main > section {
 }
 
 .display-container {
-  border: 1px solid red;
   width: inherit;
   height: 11rem;
   padding: 0 1rem;

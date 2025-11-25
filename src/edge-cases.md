@@ -2,14 +2,15 @@
 
 1. When the user first type:
 
-- a symbol ["*", "+", "/", "=", "AC", "<-"] returns null as userInput and null as result
+- a symbol ["*", "+", "/"] returns null as userInput and null as result
+  ?- a symbol ["="] returns null as userInput and null as result
 - a symbol ["-"] returns the symbol itself as userInput and null as result and after clicking "=" returns null as result
-- a symbol ["%"] returns the symbol itself as userInput and "Expression error" as result and after clicking "=" returns "Expression error" as result
+- a symbol ["%"] returns the symbol itself as userInput and null as result and after clicking "=" returns "Expression error" as result
 - a digit ["1", "2", "3", "4", "5", "6", "7", "8", "9"] returns the digit as userInput and null as result and after clicking "=" returns null as result
 - a digit ["0", "00"] returns "0" as userInput and null as result and after clicking "=" returns null as result
 - a digit ["."] returns "0." as userInput and null as result and after clicking "=" returns null as result
 
-2. When the user equation starts with 0 or digit followed by:
+2. When the user equation starts with 0, 0. or digit followed by:
 
 - ["+", "-", "*", "/"] returns "(0 or digit) symbol" as userInput and null as result and after clicking "=" returns null as result
 - ["%"] returns the "digit symbol" as UserInput and directly the mathematical result as result and after clicking "=" returns the mathematical result

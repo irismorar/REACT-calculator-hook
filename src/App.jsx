@@ -8,6 +8,7 @@ export default function App() {
     resetUserInput,
     pushToUserInput,
     userInput,
+    result,
   } = useCalculator();
 
   return (
@@ -20,7 +21,7 @@ export default function App() {
             {userInput}
             <span className="cursor"></span>
           </div>
-          <div className="result">{userInput}</div>
+          <div className="result">{result}</div>
         </div>
         <div className="buttons-container">
           <button data-variant="operation" onClick={resetUserInput}>
